@@ -47,7 +47,6 @@ $(document).ready(function() {
     resetGame();
 
     $('.btn').click(function() {
-        $('#heading').text('Guess the politician!');
 
         var btn_text = $(this).text();
         var btn_index = politician_names.indexOf(btn_text);
@@ -71,6 +70,16 @@ $(document).ready(function() {
         $('#counter').text('Correct Sequential Answers: ' + counter);
         if (counter === 16) {
             $('#heading').text('You Won!');
+            $('#play-again').css('display', 'block'); // make the button visible
+
+            $('#play-again').click(function() {
+                counter = 0; // reset counter
+                image_chosen.fill(0); // reset image_chosen array
+                $('#heading').text('Guess the politician!');
+                $('#play-again').css('none'); // make the button visible
+
+                resetGame(); // reset the game
+            });        
         }
         else {
             resetGame();
