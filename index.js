@@ -17,6 +17,7 @@ $(document).ready(function() {
     }
 
     function resetGame() {
+        //get politician image. Keep resetting until unselected
         var index;
         do {
             index = random_num(16);
@@ -33,7 +34,7 @@ $(document).ready(function() {
                 var index;
                 do {
                     index = random_num(politician_names.length);
-                } while (loaded_names.includes(index));
+                } while (loaded_names.includes(politician_names[index]));
                 loaded_names.push(index);
                 $(this).text(politician_names[index]);
             });
