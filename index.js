@@ -36,19 +36,17 @@ $(document).ready(function() {
                 do {
                     index = random_num(politician_names.length);
                 } while (loaded_names.includes(politician_names[index]));
+        
+                loaded_names.push(index);
+                $(this).text(politician_names[index]);
+        
                 // check if the index of the text of any of the buttons matches the index of the image
-                //check if the correct answer is present
                 var img_src = $('.politician').attr('src');
                 var img_index = politician_file_names.indexOf(img_src);
                 if (index === img_index) {
                     correct_answer_present = true;
-                    loaded_names.push(index);
-                    $(this).text(politician_names[index]);
-                    correct_answer_present = true;
                 }
-        
             });
-
         }
     }
 
