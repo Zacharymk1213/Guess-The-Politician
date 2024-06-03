@@ -76,7 +76,7 @@ $(document).ready(function() {
                 counter = 0; // reset counter
                 image_chosen.fill(0); // reset image_chosen array
                 $('#heading').text('Guess the politician!');
-                $('#play-again').css('none'); // make the button visible
+                $('#play-again').css('display', 'none'); // make the button invisible again
 
                 resetGame(); // reset the game
             });        
