@@ -47,6 +47,8 @@ $(document).ready(function() {
     resetGame();
 
     $('.btn').click(function() {
+        $('#heading').text('Guess the politician!');
+
         var btn_text = $(this).text();
         var btn_index = politician_names.indexOf(btn_text);
         var img_src = $('.politician').attr('src');
