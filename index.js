@@ -28,7 +28,7 @@ $(document).ready(function() {
         var loaded_names = [];
         var correct_answer_present = false;
 
-        while (!correct_answer_present) {
+        do {
             loaded_names = [];
             $('.btn').each(function() {
                 //check for duplicates
@@ -47,7 +47,7 @@ $(document).ready(function() {
                     correct_answer_present = true;
                 }
             });
-        }
+        } while (!correct_answer_present);
     }
 
 
