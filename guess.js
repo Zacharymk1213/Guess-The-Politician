@@ -2,6 +2,11 @@ var politician_names, politician_file_names, image_chosen, counter;
 init();
 
 $(document).ready(function() {
+    var isFirefox = typeof InstallTrigger !== 'undefined'; // Firefox's unique property
+    if(isFirefox) {
+        alert("Your browser is not officially supported. Some people have reported errors on this browser. If issues occur play in Chrome, Brave or some other Browser using Chrome's engine.");
+        
+    }
 
     function random_num(n) {
         return Math.floor(Math.random() * n);
