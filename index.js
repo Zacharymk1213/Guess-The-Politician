@@ -27,7 +27,7 @@ $(document).ready(function() {
 
         var loaded_names = [];
         var correct_answer_present = false;
-
+        for (var i=0;i<4;i++) {
         do {
             loaded_names = [];
             $('.btn').each(function() {
@@ -48,6 +48,7 @@ $(document).ready(function() {
                 }
             });
         } while (!correct_answer_present);
+    }
     }
 
 
