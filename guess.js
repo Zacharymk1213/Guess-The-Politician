@@ -1,14 +1,5 @@
-var politician_names,politician_file_names,image_chosen,counter;
+var politician_names, politician_file_names, image_chosen, counter;
 init();
-
-
-//use jquery to do the following
-//if an element of class btn is clicked on then change the image with the class politician
-// the image to be chosen should be based on the value of random_num(16)
-//so if random_num(16) is 1 then the image should be politician_file_names[1]
-// change the text of each of the btns to randomly selected values from politician_names,
-// prevent repeats by copying selected values to loaded, if a conflict choose a number from the index again
-
 
 $(document).ready(function() {
 
@@ -20,29 +11,35 @@ $(document).ready(function() {
         var index;
         do {
             index = random_num(16);
-        } while (image_chosen[index] === 1);        
+        } while (image_chosen[index] === 1);
+
         console.log(index);
         $('.politician').attr('src', politician_file_names[index]);
 
-        var loaded_names = [];
-        var correct_answer_present = false;
+        var correctAnswer = politician_names[index];
+        var loaded_names = [index]; // Include the correct answer in the loaded_names array
 
-        while (!correct_answer_present) {
-            loaded_names = [];
-            $('.btn').each(function() {
-                var index;
-                do {
-                    index = random_num(politician_names.length);
-                } while (loaded_names.includes(index));
-                loaded_names.push(index);
-                $(this).text(politician_names[index]);
-            });
-
-            // check if the correct answer is in one of the buttons
-            correct_answer_present = loaded_names.includes(index);
+        var buttonNames = [correctAnswer]; // Ensure the correct answer is included
+        while (buttonNames.length < 4) { // Assuming there are 4 buttons
+            var buttonIndex = random_num(politician_names.length);
+            if (!loaded_names.includes(buttonIndex)) {
+                loaded_names.push(buttonIndex);
+                buttonNames.push(politician_names[buttonIndex]);
+            }
         }
-    }
 
+        // Shuffle buttonNames
+        for (var i = buttonNames.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = buttonNames[i];
+            buttonNames[i] = buttonNames[j];
+            buttonNames[j] = temp;
+        }
+
+        $('.btn').each(function(index) {
+            $(this).text(buttonNames[index]);
+        });
+    }
 
     resetGame();
 
@@ -55,8 +52,7 @@ $(document).ready(function() {
             image_chosen[img_index] = 1;
             counter++;
 
-        }
-        else {
+        } else {
             //fill image chosen with 0's
             //reset counter to 0
             for (var i = 0; i < politician_file_names.length; i++) {
@@ -86,18 +82,13 @@ $(document).ready(function() {
                 $('#heading').text('Guess the Politician');
 
                 resetGame();
-        });
-
-
-        }
-        else {
+            });
+        } else {
             resetGame();
         }
     });
 });
 
-
-//used to getting politican names as well as image
 function init() {
     counter = 0;
     politician_names = [
@@ -117,7 +108,7 @@ function init() {
         "Mike Johnson",
         "Mitch Mcconnell",
         "Donald Trump"
-    ]
+    ];
     politician_file_names = [
         "images/france/le_pen.jpeg",
         "images/france/macron.jpeg",
